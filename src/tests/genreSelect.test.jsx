@@ -1,5 +1,4 @@
-import {fireEvent, render} from '@testing-library/react';
-
+import { fireEvent, render } from '@testing-library/react';
 import GenreSelect from "../components/GenreSelect";
 
 const genres = ['all', 'documentary', 'comedy', 'horror', 'crime']
