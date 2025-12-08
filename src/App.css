@@ -115,3 +115,41 @@
     border-radius: 0px;
     border-bottom: 2px solid #f65261;
 }
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-tile-container {
+    width: 33.33%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.movie-poster {
+    margin-right: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.movie-poster-detail {
+    margin-right: 20px;
+    overflow: hidden;
+    width: 30%;
+}
+
+.movie-poster img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.movie-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.movie-info-detail {
+    display: flex;
+}

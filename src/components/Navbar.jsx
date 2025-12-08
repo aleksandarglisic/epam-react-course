@@ -1,9 +1,13 @@
 import GenreSelect from "./GenreSelect";
+import SortControl from "./SortControl";
 
 const Navbar = ({
     genres,
     selectedGenre,
     onGenreSelect,
+    sortingOptions,
+    onSortChange,
+    currentSelection
 }) => {
     return (
         <nav className="navbar">
@@ -16,7 +20,7 @@ const Navbar = ({
             </div>
 
             <div className="navbar-right">
-                <span className="sort-label">Sort by</span>
+                <SortControl onSortChange={onSortChange} currentSelection={currentSelection} sortingOptions={sortingOptions} />
             </div>
         </nav>
     );
