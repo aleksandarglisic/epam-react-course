@@ -1,22 +1,15 @@
-import GenreSelect from "./GenreSelect";
-
 const Navbar = ({
-    genres,
-    selectedGenre,
-    onGenreSelect,
+    renderLeft,
+    renderRight
 }) => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <GenreSelect
-                    genres={genres}
-                    selectedGenre={selectedGenre}
-                    onSelect={onGenreSelect}
-                />
+                {renderLeft}
             </div>
 
             <div className="navbar-right">
-                <span className="sort-label">Sort by</span>
+                {renderRight}
             </div>
         </nav>
     );
