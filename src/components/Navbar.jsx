@@ -1,26 +1,15 @@
-import GenreSelect from "./GenreSelect";
-import SortControl from "./SortControl";
-
 const Navbar = ({
-    genres,
-    selectedGenre,
-    onGenreSelect,
-    sortingOptions,
-    onSortChange,
-    currentSelection
+    renderLeft,
+    renderRight
 }) => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <GenreSelect
-                    genres={genres}
-                    selectedGenre={selectedGenre}
-                    onSelect={onGenreSelect}
-                />
+                {renderLeft}
             </div>
 
             <div className="navbar-right">
-                <SortControl onSortChange={onSortChange} currentSelection={currentSelection} sortingOptions={sortingOptions} />
+                {renderRight}
             </div>
         </nav>
     );

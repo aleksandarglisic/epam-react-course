@@ -1,5 +1,5 @@
-export const genres = ['all', 'documentary', 'comedy', 'horror', 'crime']
-
+export const genres = ['documentary', 'comedy', 'horror', 'crime']
+export const navbar_genres = ['all', ...genres]
 export const sorting = ['RELEASE DATE', 'TITLE']
 
 export const movies = [

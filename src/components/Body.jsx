@@ -1,10 +1,10 @@
 import MovieList from "./MovieList";
 
-const Body = ({ handleMovieClick, movies }) => {
+const Body = ({ handleMovieClick, movies, onEditMovie, onDeleteMovie }) => {
     return (
-        <body>
-            <MovieList movies={movies} onMovieClick={handleMovieClick} />
-        </body>
+        <div>
+            <MovieList movies={movies} onMovieClick={handleMovieClick} onEditMovie={onEditMovie} onDeleteMovie={onDeleteMovie} />
+        </div>
     );
 };
 
