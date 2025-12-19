@@ -28,12 +28,11 @@ export const EditMovie = Template.bind({});
 EditMovie.args = {
     initialMovie: {
         title: 'Inception',
-        releaseDate: '2010-07-16',
+        release_date: '2010-07-16',
         movieUrl: 'https://www.imdb.com/title/tt1375666/',
-        rating: 8.8,
+        vote_average: 8.8,
         genres: ['action', 'sci-fi'],
-        duration: 148,
-        description:
-            'A thief who steals corporate secrets through the use of dream-sharing technology.',
+        runtime: 148,
+        overview: 'A thief who steals corporate secrets through the use of dream-sharing technology.',
     },
 };

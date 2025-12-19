@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
-import { genres } from '../const/movies';
+import React, { useState } from 'react'
+import Select from 'react-select'
+import { genres } from '../const/movies'
 
 export default function MovieForm({ initialMovie = {}, onSubmit }) {
     const [selectedGenres, setSelectedGenres] = useState(
@@ -8,24 +8,24 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
             value: g,
             label: g.charAt(0).toUpperCase() + g.slice(1),
         }))
-    );
+    )
 
     const handleChange = (selected) => {
-        setSelectedGenres(selected || []);
-    };
+        setSelectedGenres(selected || [])
+    }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = Object.fromEntries(new FormData(event.target));
-        data.genres = selectedGenres.map(g => g.value);
-        onSubmit(data);
-    };
+        event.preventDefault()
+        const data = Object.fromEntries(new FormData(event.target))
+        data.genres = selectedGenres.map(g => g.value)
+        onSubmit(data)
+    }
 
     const genreOptions = genres.map(g => ({
         value: g.toLowerCase(),
         label: g.charAt(0).toUpperCase() + g.slice(1),
-    }));
-
+    }))
+    console.log('intialmovie', initialMovie)
     return (
         <form className="movie-form" onSubmit={handleSubmit}>
             <div className="form-row">
@@ -46,7 +46,7 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
                         id="releaseDate"
                         type="date"
                         name="releaseDate"
-                        defaultValue={initialMovie.releaseDate || ''}
+                        defaultValue={initialMovie.release_date || ''}
                         required
                     />
                 </div>
@@ -73,7 +73,7 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
                         min="0"
                         max="10"
                         placeholder="0–10"
-                        defaultValue={initialMovie.rating || ''}
+                        defaultValue={initialMovie.vote_average || ''}
                         required
                     />
                 </div>
@@ -100,7 +100,7 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
                         id="runtime"
                         name="runtime"
                         placeholder="Example: 120"
-                        defaultValue={initialMovie.duration || ''}
+                        defaultValue={initialMovie.runtime || ''}
                         required
                     />
                 </div>
@@ -112,7 +112,7 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
                     id="overview"
                     name="overview"
                     placeholder="Movie description..."
-                    defaultValue={initialMovie.description || ''}
+                    defaultValue={initialMovie.overview || ''}
                     rows={5}
                 />
             </div>
@@ -121,5 +121,5 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
                 Save
             </button>
         </form>
-    );
+    )
 }

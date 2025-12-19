@@ -1,7 +1,6 @@
-// src/stories/MovieDetails.stories.jsx
 import React from 'react';
 import MovieDetails from '../components/MovieDetails';
-import { movies } from "../const/movies"; // adjust path
+import { movies } from "../const/movies";
 
 export default {
     title: 'Components/MovieDetails',
