@@ -49,3 +49,141 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+.dialog-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #232323;
+  color: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: auto;
+  max-width: 90%;
+  max-height: 90%;
+  min-width: 500px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+
+  z-index: 1000;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+}
+
+.dialog-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dialog-close-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+
+.movie-tile {
+    position: relative;
+}
+
+.poster-wrapper {
+    position: relative;
+}
+
+.movie-menu-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-menu-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.movie-menu {
+    position: absolute;
+    top: 44px;
+    right: 8px;
+
+    background: #232323;
+    color: white;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 10;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.movie-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+}
+
+.movie-menu button:hover {
+    background: #3a3a3a;
+}

@@ -7,12 +7,10 @@
 }
 
 .header {
-    background-image: url("/public/bg-header.jpg");
     background-size: cover;
     background-color: #232323;
     color: white;
     padding: 20px 0;
-    height: 300px;
 }
 
 .header-container {
@@ -58,8 +56,7 @@
 
 .logo {
     font-size: 1.8rem;
-    font-weight: bold;
-    color: #e50914;
+    color: #f65261;
 }
 
 .add-movie-btn {
@@ -77,7 +74,7 @@
     background-color: #b0060f;
 }
 
-.header-center {
+.content-center {
     margin-top: 40px;
     display: flex;
     justify-content: center;
@@ -114,4 +111,264 @@
 .selected {
     border-radius: 0px;
     border-bottom: 2px solid #f65261;
+}
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-tile-container {
+    width: 33.33%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.movie-poster {
+    margin-right: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.movie-poster-detail {
+    margin-right: 20px;
+    overflow: hidden;
+    width: 30%;
+}
+
+.movie-poster img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.movie-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.movie-info-detail {
+    display: flex;
+}
+
+.movie-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    color: white;
+    width: 700px;
+}
+
+/* 2-column rows */
+.form-row {
+    display: flex;
+    gap: 24px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field.large {
+    flex: 0 0 70%;
+}
+
+.form-field.small {
+    flex: 0 0 30%;
+}
+
+.form-field.full {
+    width: 100%;
+}
+
+/* Labels */
+.form-field label {
+    color: #f65261;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Inputs */
+.movie-form input,
+.movie-form textarea {
+    background: #424242;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    color: white;
+    font-size: 14px;
+}
+
+.movie-form input::placeholder,
+.movie-form textarea::placeholder {
+    color: #555555;
+}
+
+.genre-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 12px;
+}
+
+.genre-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: white;
+}
+
+.genre-item input[type="checkbox"] {
+    accent-color: #f65261;
+}
+
+.submit-btn {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #f65261;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-end;
+}
+.genre-label {
+    color: #f65261;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.rs__control {
+    background-color: #424242 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 2px !important;
+}
+
+.rs__single-value {
+    color: white !important;
+}
+
+.rs__placeholder {
+    color: #555555 !important;
+}
+
+.rs__multi-value {
+    background-color: #555555 !important;
+}
+
+.rs__multi-value__label {
+    color: white !important;
+}
+
+.rs__multi-value__remove {
+    color: #f65261 !important;
+}
+
+.rs__multi-value__remove:hover {
+    background-color: #f65261 !important;
+    color: white !important;
+}
+
+.rs__menu {
+    background-color: #424242 !important;
+    color: white !important;
+    border: 1px solid #555555;
+}
+
+.rs__option {
+    background-color: #424242 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.rs__option--is-focused {
+    background-color: #555555 !important;
+}
+
+.rs__option--is-selected {
+    background-color: #f65261 !important;
+    color: white !important;
+}
+
+.rs__input-container {
+    color: white !important;
+}
+
+.movie-details-page {
+    padding: 20px;
+}
+
+.movie-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.movie-poster-detail {
+    width: 30%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.movie-text-detail {
+    flex: 1;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.movie-title {
+    margin: 0;
+}
+
+.movie-rating {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #555555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.movie-genres {
+    margin: 10px 0;
+    color: #555;
+}
+
+.movie-meta {
+    color: #f65261;
+    margin-bottom: 15px;
+}
+
+.movie-overview {
+    line-height: 1.6;
+}
+
+.sort-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    color: #f65261;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
 }
