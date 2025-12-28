@@ -25,7 +25,7 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
         value: g.toLowerCase(),
         label: g.charAt(0).toUpperCase() + g.slice(1),
     }))
-    console.log('intialmovie', initialMovie)
+
     return (
         <form className="movie-form" onSubmit={handleSubmit}>
             <div className="form-row">

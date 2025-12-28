@@ -8,26 +8,41 @@ import GenreSelect from "./GenreSelect"
 import SortControl from "./SortControl"
 import Dialog from "./Dialog"
 import MovieForm from "./MovieForm"
-import MovieDetails from "./MovieDetails"
-import SearchForm from "./SearchForm"
 import { Logo } from "./Logo"
 import { AddMovieButton } from "./AddMovieButton"
 import { SearchIconButton } from "./SearchIconButton"
+import { useSearchParams, Outlet, useNavigate } from "react-router"
+import { useParams } from "react-router-dom"
 
 
 export default function MovieListPage() {
+    const navigate = useNavigate()
+    const urlParams = useParams()
+    const movieId = urlParams.movieId
+    const isDetailsPage = Boolean(movieId)
+    const [searchParams, setSearchParams] = useSearchParams()
     const [movieList, setMovieList] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const [selectedGenre, setSelectedGenre] = useState(navbar_genres[0])
-    const [sortSelection, setSortSelection] = useState(sorting[0].value)
-    const [sortOrder, setSortOrder] = useState('desc')
+    const searchQuery = searchParams.get("query") ?? ""
+    const selectedGenre = searchParams.get("genre") ?? navbar_genres[0]
+    const sortSelection = searchParams.get("sortBy") ?? sorting[0].value
+    const sortOrder = searchParams.get("order") ?? "desc"
 
-    const [searchQuery, setSearchQuery] = useState("")
     const [selectedMovie, setSelectedMovie] = useState(null)
 
     const [modal, setModal] = useState({ type: null, movie: null })
+
+    const updateParams = (newValues) => {
+        setSearchParams({
+            query: searchQuery,
+            genre: selectedGenre,
+            sortBy: sortSelection,
+            order: sortOrder,
+            ...newValues
+        })
+    }
 
     const handleOpenAddModal = () => setModal({ type: "add", movie: null })
     const handleOpenEditModal = (movie) => setModal({ type: "edit", movie })
@@ -38,11 +53,10 @@ export default function MovieListPage() {
     const handleEditMovie = (movie) => console.log('Editing a movie', movie)
     const handleDeleteMovie = (movie) => console.log('Deleting a movie', movie)
 
-    const handleSearch = (query) => setSearchQuery(query)
-    const handleGenreSelect = (genre) => setSelectedGenre(genre)
-    const handleSorting = (sortSelection) => setSortSelection(sortSelection)
-    const handleSearchButtonClick = () => setSelectedMovie(null)
-    const handleSortOrderChange = (order) => setSortOrder(order)
+    const handleSearch = (q) => updateParams({ query: q })
+    const handleGenreSelect = (g) => updateParams({ genre: g })
+    const handleSorting = (s) => updateParams({ sortBy: s })
+    const handleSortOrderChange = (o) => updateParams({ order: o })
 
     const params = useMemo(() => {
         const baseParams = {
@@ -82,7 +96,7 @@ export default function MovieListPage() {
     }
 
     const handleMovieClick = (movie) => {
-        setSelectedMovie(movie)
+        navigate(`/${movie.id}?${searchParams.toString()}`)
     }
 
     useEffect(() => {
@@ -101,21 +115,18 @@ export default function MovieListPage() {
 
     return (
         <>
-            {selectedMovie ?
-                <Header
-                    topLeft={<Logo />}
-                    topRight={<SearchIconButton onClick={handleSearchButtonClick} />}
-                    center={<MovieDetails movie={selectedMovie} />}
-                    movie={selectedMovie}
+            <Header
+                topLeft={<Logo />}
+                topRight={
+                    isDetailsPage
+                        ? <SearchIconButton onClick={() => navigate(`/?${searchParams.toString()}`)} />
+                        : <AddMovieButton onClick={handleOpenAddModal} />
+                }
+                center={<Outlet context={{ onSearch: handleSearch, query: searchQuery }} />}
+                movie={selectedMovie}
 
-                />
-                :
-                <Header
-                    center={<SearchForm onSearch={handleSearch} placeholder={'What do you want to watch?'} />}
-                    topLeft={<Logo />}
-                    topRight={<AddMovieButton onClick={handleOpenAddModal} />}
-                />
-            }
+            />
+
             <Navbar
                 renderLeft={<GenreSelect genres={navbar_genres} selectedGenre={selectedGenre} onSelect={handleGenreSelect} />}
                 renderRight={
