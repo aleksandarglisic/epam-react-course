@@ -1,16 +1,12 @@
-import SearchForm from "./SearchForm";
-
-const Header = ({ onSearch }) => {
+const Header = ({ topLeft, center, topRight }) => {
     return (
         <header className="header">
             <div className="header-container">
                 <div className="header-top">
-                    <div className="logo">NetflixRoulette</div>
-                    <button className="add-movie-btn">+ Add Movie</button>
+                    <div className="header-left">{topLeft}</div>
+                    <div className="header-right">{topRight}</div>
                 </div>
-                <div className="header-center">
-                    <SearchForm onSearch={onSearch} placeholder={'What do you want to watch?'} />
-                </div>
+                {center}
             </div>
         </header>
     );
