@@ -1,29 +1,22 @@
-import Counter from "./components/Counter";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import { genres } from "./const/movies";
-import { useState } from "react";
 import './App.css'
+import MovieListPage from "./components/MovieListPage"
+import { Route, Routes } from "react-router"
+import SearchForm from "./components/SearchForm"
+import MovieDetailsWrapper from "./components/MovieDetailsWrapper"
+import AddMovieForm from "./components/AddMovieForm";
+import EditMovieForm from "./components/EditMovieForm";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState(genres[0])
-
-  const handleGenreSelect = (genre) => {
-    setSelectedGenre(genre)
-    console.log("Genre:", genre);
-  };
-
-  const handleSearch = (query) => {
-    console.log("Search:", query);
-  };
-
-  return (
-    <>
-      <Header onSearch={handleSearch} />
-      <Navbar genres={genres} selectedGenre={selectedGenre} onGenreSelect={handleGenreSelect} />
-      <Counter initialValue={0} />
-    </>
-  )
+    return (
+        <Routes>
+            <Route path="/" element={<MovieListPage />}>
+                <Route index element={<SearchForm />} />
+                <Route path="new" element={<AddMovieForm />} />
+                <Route path=":movieId/edit" element={<EditMovieForm />} />
+                <Route path=":movieId" element={<MovieDetailsWrapper />} />
+            </Route>
+        </Routes>
+    )
 }
 
 export default App
