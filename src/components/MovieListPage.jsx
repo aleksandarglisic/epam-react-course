@@ -44,13 +44,12 @@ export default function MovieListPage() {
         })
     }
 
-    const handleOpenAddModal = () => setModal({ type: "add", movie: null })
-    const handleOpenEditModal = (movie) => setModal({ type: "edit", movie })
     const handleOpenDeleteModal = (movie) => setModal({ type: "delete", movie })
     const handleCloseModal = () => setModal({ type: null, movie: null })
 
-    const handleAddMovie = (movie) => console.log('Adding a movie', movie)
-    const handleEditMovie = (movie) => console.log('Editing a movie', movie)
+    const handleEditMovie = (movie) => {
+        navigate(`/${movie.id}/edit?${searchParams.toString()}`)
+    }
     const handleDeleteMovie = (movie) => console.log('Deleting a movie', movie)
 
     const handleSearch = (q) => updateParams({ query: q })
@@ -120,7 +119,7 @@ export default function MovieListPage() {
                 topRight={
                     isDetailsPage
                         ? <SearchIconButton onClick={() => navigate(`/?${searchParams.toString()}`)} />
-                        : <AddMovieButton onClick={handleOpenAddModal} />
+                        : <AddMovieButton onClick={() => navigate(`/new?${searchParams.toString()}`)} />
                 }
                 center={<Outlet context={{ onSearch: handleSearch, query: searchQuery }} />}
                 movie={selectedMovie}
@@ -144,18 +143,8 @@ export default function MovieListPage() {
                     <p>Error loading movies</p> :
                     loading ?
                         <p>Loading movies...</p> :
-                        <Body handleMovieClick={handleMovieClick} movies={movieList} onEditMovie={handleOpenEditModal} onDeleteMovie={handleOpenDeleteModal} />
+                        <Body handleMovieClick={handleMovieClick} movies={movieList} onEditMovie={handleEditMovie} onDeleteMovie={handleOpenDeleteModal} />
             }
-
-
-            {modal.type === 'edit' && (
-                <Dialog title="EDIT MOVIE" onClose={handleCloseModal}>
-                    <MovieForm
-                        initialMovie={modal.movie}
-                        onSubmit={handleEditMovie}
-                    />
-                </Dialog>
-            )}
 
             {modal.type === 'delete' && (
                 <Dialog title="DELETE MOVIE" onClose={handleCloseModal}>
@@ -171,11 +160,6 @@ export default function MovieListPage() {
                 </Dialog>
             )}
 
-            {modal.type === 'add' && (
-                <Dialog title="ADD MOVIE" onClose={handleCloseModal}>
-                    <MovieForm onSubmit={handleAddMovie} />
-                </Dialog>
-            )}
         </>
     )
 }

@@ -17,8 +17,18 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
     const handleSubmit = (event) => {
         event.preventDefault()
         const data = Object.fromEntries(new FormData(event.target))
-        data.genres = selectedGenres.map(g => g.value)
-        onSubmit(data)
+        const payload = {
+            id: initialMovie.id,
+            title: data.title,
+            release_date: data.releaseDate,
+            poster_path: data.poster_path,
+            vote_average: Number(data.rating),
+            runtime: Number(data.runtime),
+            overview: data.overview,
+            genres: selectedGenres.map(g => g.value),
+        }
+        console.log("API payload", payload)
+        onSubmit(payload)
     }
 
     const genreOptions = genres.map(g => ({
@@ -54,12 +64,12 @@ export default function MovieForm({ initialMovie = {}, onSubmit }) {
 
             <div className="form-row">
                 <div className="form-field large">
-                    <label htmlFor="movieUrl">Movie URL</label>
+                    <label htmlFor="poster_path">Movie URL</label>
                     <input
-                        id="movieUrl"
-                        name="movieUrl"
+                        id="poster_path"
+                        name="poster_path"
                         placeholder="https://"
-                        defaultValue={initialMovie.movieUrl || ''}
+                        defaultValue={initialMovie.poster_path || ''}
                     />
                 </div>
 
